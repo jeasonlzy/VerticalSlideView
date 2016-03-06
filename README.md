@@ -4,7 +4,7 @@
 该项目参考了：[https://github.com/xmuSistone/android-vertical-slide-view](https://github.com/xmuSistone/android-vertical-slide-view) 喜欢原作的可以去使用。相比原项目，代码更简单易懂，扩展性更高，欢迎大家下载体验本项目，如果使用过程中遇到什么问题，欢迎反馈。
 
 ## 演示
- ![image](https://github.com/jeasonlzy0216/VerticalSlideView/blob/master/screenshots/demo1.png)![image](https://github.com/jeasonlzy0216/VerticalSlideView/blob/master/screenshots/demo2.gif)![image](https://github.com/jeasonlzy0216/VerticalSlideView/blob/master/screenshots/demo3.gif)![image](https://github.com/jeasonlzy0216/VerticalSlideView/blob/master/screenshots/demo4.gif)
+ ![image](https://github.com/jeasonlzy0216/VerticalSlideView/blob/master/screenshots/demo0.png)![image](https://github.com/jeasonlzy0216/VerticalSlideView/blob/master/screenshots/demo2.gif)![image](https://github.com/jeasonlzy0216/VerticalSlideView/blob/master/screenshots/demo3.gif)![image](https://github.com/jeasonlzy0216/VerticalSlideView/blob/master/screenshots/demo4.gif)
 
 ## 1.用法
 
