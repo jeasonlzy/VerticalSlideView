@@ -23,7 +23,7 @@ public class VerticalListView extends ListView {
     }
 
     public VerticalListView(Context context, AttributeSet attrs) {
-        this(context, attrs, 0);
+        this(context, attrs, android.R.attr.listViewStyle);
     }
 
     public VerticalListView(Context context, AttributeSet attrs, int defStyleAttr) {

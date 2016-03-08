@@ -23,7 +23,7 @@ public class VerticalGridView extends GridView {
     }
 
     public VerticalGridView(Context context, AttributeSet attrs) {
-        this(context, attrs, 0);
+        this(context, attrs, android.R.attr.gridViewStyle);
     }
 
     public VerticalGridView(Context context, AttributeSet attrs, int defStyleAttr) {

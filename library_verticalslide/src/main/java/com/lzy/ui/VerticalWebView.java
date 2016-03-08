@@ -23,7 +23,7 @@ public class VerticalWebView extends WebView {
     }
 
     public VerticalWebView(Context context, AttributeSet attrs) {
-        this(context, attrs, 0);
+        this(context, attrs, android.R.attr.webViewStyle);
     }
 
     public VerticalWebView(Context context, AttributeSet attrs, int defStyleAttr) {

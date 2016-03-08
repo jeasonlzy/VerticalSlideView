@@ -23,7 +23,7 @@ public class VerticalScrollView extends ScrollView {
     }
 
     public VerticalScrollView(Context context, AttributeSet attrs) {
-        this(context, attrs, 0);
+        this(context, attrs, android.R.attr.scrollViewStyle);
     }
 
     public VerticalScrollView(Context context, AttributeSet attrs, int defStyleAttr) {
