@@ -14,7 +14,7 @@ import android.webkit.WebView;
  * 修订历史：
  * ================================================
  */
-public class VerticalWebView extends WebView {
+public class VerticalWebView extends WebView implements ObservableView {
 
     private float downY;
 
@@ -43,13 +43,23 @@ public class VerticalWebView extends WebView {
                 boolean allowParentTouchEvent;
                 if (dy > 0) {
                     //位于顶部时下拉，让父View消费事件
-                    allowParentTouchEvent = (getScrollY() <= 0);
+                    allowParentTouchEvent = isTop();
                 } else {
                     //位于底部时上拉，让父View消费事件
-                    allowParentTouchEvent = (getHeight() + getScrollY() >= getContentHeight() * getScale());
+                    allowParentTouchEvent = isBottom();
                 }
                 getParent().requestDisallowInterceptTouchEvent(!allowParentTouchEvent);
         }
         return super.dispatchTouchEvent(ev);
+    }
+
+    @Override
+    public boolean isTop() {
+        return getScrollY() <= 0;
+    }
+
+    @Override
+    public boolean isBottom() {
+        return getHeight() + getScrollY() >= getContentHeight() * getScale();
     }
 }

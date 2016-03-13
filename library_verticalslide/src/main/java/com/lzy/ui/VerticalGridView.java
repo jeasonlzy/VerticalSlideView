@@ -14,7 +14,7 @@ import android.widget.GridView;
  * 修订历史：
  * ================================================
  */
-public class VerticalGridView extends GridView {
+public class VerticalGridView extends GridView implements ObservableView {
 
     private float downY;
 
@@ -43,13 +43,31 @@ public class VerticalGridView extends GridView {
                 boolean allowParentTouchEvent;
                 if (dy > 0) {
                     //位于顶部时下拉，让父View消费事件
-                    allowParentTouchEvent = (getFirstVisiblePosition() == 0 && getChildAt(0).getTop() >= 0);
+                    allowParentTouchEvent = isTop();
                 } else {
                     //位于底部时上拉，让父View消费事件
-                    allowParentTouchEvent = (getCount() == getFirstVisiblePosition() + getChildCount());
+                    allowParentTouchEvent = isBottom();
                 }
                 getParent().requestDisallowInterceptTouchEvent(!allowParentTouchEvent);
         }
         return super.dispatchTouchEvent(ev);
+    }
+
+    @Override
+    public boolean isTop() {
+        if (getChildCount() <= 0) return false;
+        final int firstTop = getChildAt(0).getTop();
+        return getFirstVisiblePosition() == 0 && firstTop >= getListPaddingTop();
+    }
+
+    @Override
+    public boolean isBottom() {
+        final int childCount = getChildCount();
+        if (childCount <= 0) return false;
+        final int itemsCount = getCount();
+        final int firstPosition = getFirstVisiblePosition();
+        final int lastPosition = firstPosition + childCount;
+        final int lastBottom = getChildAt(childCount - 1).getBottom();
+        return lastPosition >= itemsCount && lastBottom <= getHeight() - getListPaddingBottom();
     }
 }

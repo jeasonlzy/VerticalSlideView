@@ -17,7 +17,7 @@ import android.view.MotionEvent;
  * 修订历史：
  * ================================================
  */
-public class VerticalRecyclerView extends RecyclerView {
+public class VerticalRecyclerView extends RecyclerView implements ObservableView {
 
     private float downY;
     /** 第一个可见的item的位置 */
@@ -28,6 +28,8 @@ public class VerticalRecyclerView extends RecyclerView {
     private int lastVisibleItemPosition;
     /** 最后一个的位置 */
     private int[] lastPositions;
+    private boolean isTop;
+    private boolean isBottom;
 
     public VerticalRecyclerView(Context context) {
         this(context, null);
@@ -78,12 +80,12 @@ public class VerticalRecyclerView extends RecyclerView {
                 boolean allowParentTouchEvent;
                 if (dy > 0) {
                     //位于顶部时下拉，让父View消费事件
-                    allowParentTouchEvent = (firstVisibleItemPosition == 0 && getChildAt(0).getTop() >= 0);
+                    allowParentTouchEvent = isTop = firstVisibleItemPosition == 0 && getChildAt(0).getTop() >= 0;
                 } else {
                     //位于底部时上拉，让父View消费事件
                     int visibleItemCount = layoutManager.getChildCount();
                     int totalItemCount = layoutManager.getItemCount();
-                    allowParentTouchEvent = visibleItemCount > 0 && (lastVisibleItemPosition) >= totalItemCount - 1 && getChildAt(getChildCount() - 1).getBottom() <= getHeight();
+                    allowParentTouchEvent = isBottom = visibleItemCount > 0 && (lastVisibleItemPosition) >= totalItemCount - 1 && getChildAt(getChildCount() - 1).getBottom() <= getHeight();
                 }
                 getParent().requestDisallowInterceptTouchEvent(!allowParentTouchEvent);
         }
@@ -109,5 +111,15 @@ public class VerticalRecyclerView extends RecyclerView {
             }
         }
         return min;
+    }
+
+    @Override
+    public boolean isTop() {
+        return isTop;
+    }
+
+    @Override
+    public boolean isBottom() {
+        return isBottom;
     }
 }

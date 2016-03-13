@@ -1,6 +1,8 @@
 package com.lzy.ui;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
+import android.os.Build;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.widget.ScrollView;
@@ -14,7 +16,7 @@ import android.widget.ScrollView;
  * 修订历史：
  * ================================================
  */
-public class VerticalScrollView extends ScrollView {
+public class VerticalScrollView extends ScrollView implements ObservableView {
 
     private float downY;
 
@@ -43,13 +45,32 @@ public class VerticalScrollView extends ScrollView {
                 boolean allowParentTouchEvent;
                 if (dy > 0) {
                     //位于顶部时下拉，让父View消费事件
-                    allowParentTouchEvent = (getScrollY() <= 0);
+                    allowParentTouchEvent = isTop();
                 } else {
                     //位于底部时上拉，让父View消费事件
-                    allowParentTouchEvent = (getScrollY() + getHeight() >= computeVerticalScrollRange());
+                    allowParentTouchEvent = isBottom();
                 }
                 getParent().requestDisallowInterceptTouchEvent(!allowParentTouchEvent);
         }
         return super.dispatchTouchEvent(ev);
+    }
+
+    @SuppressLint("NewApi")
+    @Override
+    public boolean isTop() {
+        if (Build.VERSION.SDK_INT >= 14) {
+            return !canScrollVertically(-1);
+        } else {
+            return getScrollY() <= 0;
+        }
+    }
+
+    @Override
+    public boolean isBottom() {
+        if (Build.VERSION.SDK_INT >= 14) {
+            return !canScrollVertically(1);
+        } else {
+            return getScrollY() + getHeight() >= computeVerticalScrollRange();
+        }
     }
 }
