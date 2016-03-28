@@ -1,4 +1,4 @@
-package com.lzy.ui;
+package com.lzy.widget;
 
 import android.content.Context;
 import android.support.v4.view.GestureDetectorCompat;
@@ -20,7 +20,7 @@ import android.view.ViewGroup;
  * 修订历史：
  * ================================================
  */
-public class DragSlideLayout extends ViewGroup {
+public class VerticalSlide extends ViewGroup {
 
     private static final int VEL_THRESHOLD = 6000;  // 滑动速度的阈值，超过这个绝对值认为是上下
     private int DISTANCE_THRESHOLD = 60;            // 单位是dp，当上下滑动速度不够时，通过这个阈值来判定是应该粘到顶部还是底部
@@ -41,15 +41,15 @@ public class DragSlideLayout extends ViewGroup {
         void onShowNextPage();
     }
 
-    public DragSlideLayout(Context context) {
+    public VerticalSlide(Context context) {
         this(context, null);
     }
 
-    public DragSlideLayout(Context context, AttributeSet attrs) {
+    public VerticalSlide(Context context, AttributeSet attrs) {
         this(context, attrs, 0);
     }
 
-    public DragSlideLayout(Context context, AttributeSet attrs, int defStyleAttr) {
+    public VerticalSlide(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         DISTANCE_THRESHOLD = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, DISTANCE_THRESHOLD, getResources().getDisplayMetrics());
         mDragHelper = ViewDragHelper.create(this, 10f, new DragCallBack());
@@ -108,7 +108,7 @@ public class DragSlideLayout extends ViewGroup {
             if (changedView == view2) view1.offsetTopAndBottom(dy);
 
             // 如果不重绘，拖动的时候，其他View会不显示
-            ViewCompat.postInvalidateOnAnimation(DragSlideLayout.this);
+            ViewCompat.postInvalidateOnAnimation(VerticalSlide.this);
         }
 
         @Override
@@ -138,7 +138,7 @@ public class DragSlideLayout extends ViewGroup {
             }
             //触发缓慢滚动
             if (mDragHelper.smoothSlideViewTo(releasedChild, 0, finalTop)) {
-                ViewCompat.postInvalidateOnAnimation(DragSlideLayout.this);
+                ViewCompat.postInvalidateOnAnimation(VerticalSlide.this);
             }
         }
 

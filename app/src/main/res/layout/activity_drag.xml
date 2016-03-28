@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <com.lzy.ui.DragSlideLayout
+    <com.lzy.widget.VerticalSlide
         android:id="@+id/dragLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -18,5 +18,5 @@
             android:id="@+id/second"
             android:layout_width="match_parent"
             android:layout_height="match_parent"/>
-    </com.lzy.ui.DragSlideLayout>
+    </com.lzy.widget.VerticalSlide>
 </RelativeLayout>

@@ -5,7 +5,7 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
-import com.lzy.ui.DragSlideLayout;
+import com.lzy.widget.VerticalSlide;
 import com.lzy.verticalslideview.fragment.Fragment_GridView;
 import com.lzy.verticalslideview.fragment.Fragment_ListView;
 import com.lzy.verticalslideview.fragment.Fragment_RecyclerView;
@@ -18,7 +18,7 @@ public class DragActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_drag);
-        DragSlideLayout dragLayout = (DragSlideLayout) findViewById(R.id.dragLayout);
+        VerticalSlide dragLayout = (VerticalSlide) findViewById(R.id.dragLayout);
 
         Intent intent = getIntent();
         String top = intent.getStringExtra("top");
@@ -54,7 +54,7 @@ public class DragActivity extends AppCompatActivity {
             case "WebView":
                 final Fragment_WebView fragment_webView = new Fragment_WebView();
                 transaction.replace(R.id.second, fragment_webView);
-                dragLayout.setOnShowNextPageListener(new DragSlideLayout.OnShowNextPageListener() {
+                dragLayout.setOnShowNextPageListener(new VerticalSlide.OnShowNextPageListener() {
                     @Override
                     public void onShowNextPage() {
                         fragment_webView.initView();

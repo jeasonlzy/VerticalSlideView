@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.lzy.ui.VerticalScrollView
+<com.lzy.widget.vertical.VerticalScrollView
     android:id="@+id/custScrollView"
             xmlns:android="http://schemas.android.com/apk/res/android"
             android:layout_width="match_parent"
@@ -425,4 +425,4 @@
         </LinearLayout>
     </LinearLayout>
 
-</com.lzy.ui.VerticalScrollView>
+</com.lzy.widget.vertical.VerticalScrollView>

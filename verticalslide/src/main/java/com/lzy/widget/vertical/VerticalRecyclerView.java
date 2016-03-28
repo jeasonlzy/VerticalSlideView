@@ -1,4 +1,4 @@
-package com.lzy.ui;
+package com.lzy.widget.vertical;
 
 import android.content.Context;
 import android.support.v7.widget.GridLayoutManager;

@@ -3,7 +3,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
-    <com.lzy.ui.VerticalWebView
+    <com.lzy.widget.vertical.VerticalWebView
         android:id="@+id/webView"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"/>

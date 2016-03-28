@@ -6,8 +6,8 @@ android {
 
     defaultConfig {
         applicationId "com.lzy.verticalslideview"
-        minSdkVersion 16
-        targetSdkVersion 23
+        minSdkVersion 8
+        targetSdkVersion 22
         versionCode 1
         versionName "1.0"
     }
@@ -22,5 +22,6 @@ android {
 dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
     compile 'com.android.support:appcompat-v7:23.1.1'
-    compile project(':library_verticalslide')
+
+    compile 'com.lzy.widget:view-core:0.1.4'
 }
