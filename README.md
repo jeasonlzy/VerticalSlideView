@@ -3,6 +3,12 @@
 
 该项目参考了：[https://github.com/xmuSistone/android-vertical-slide-view](https://github.com/xmuSistone/android-vertical-slide-view) 喜欢原作的可以去使用。相比原项目，代码更简单易懂，扩展性更高，欢迎大家下载体验本项目，如果使用过程中遇到什么问题，欢迎反馈。
 
+### 联系方式
+ * 邮箱地址： liaojeason@126.com
+ * QQ群： 489873144 （建议使用QQ群，邮箱使用较少，可能看的不及时）
+ * 本群刚建立，旨在为使用我的github项目的人提供方便，如果遇到问题欢迎在群里提问。个人能力也有限，希望一起学习一起进步。
+
+
 ## 演示
  ![image](https://github.com/jeasonlzy0216/VerticalSlideView/blob/master/screenshots/demo0.png)![image](https://github.com/jeasonlzy0216/VerticalSlideView/blob/master/screenshots/demo2.gif)![image](https://github.com/jeasonlzy0216/VerticalSlideView/blob/master/screenshots/demo3.gif)![image](https://github.com/jeasonlzy0216/VerticalSlideView/blob/master/screenshots/demo4.gif)
 
