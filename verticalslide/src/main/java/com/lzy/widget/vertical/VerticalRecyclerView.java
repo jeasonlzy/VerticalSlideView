@@ -19,6 +19,7 @@ import android.view.MotionEvent;
  */
 public class VerticalRecyclerView extends RecyclerView implements ObservableView {
 
+    private float downX;
     private float downY;
     /** 第一个可见的item的位置 */
     private int firstVisibleItemPosition;
@@ -71,21 +72,28 @@ public class VerticalRecyclerView extends RecyclerView implements ObservableView
 
         switch (ev.getAction()) {
             case MotionEvent.ACTION_DOWN:
+                downX = ev.getX();
                 downY = ev.getY();
                 //如果滑动到了最底部，就允许继续向上滑动加载下一页，否者不允许
                 getParent().requestDisallowInterceptTouchEvent(true);
                 break;
             case MotionEvent.ACTION_MOVE:
+                float dx = ev.getX() - downX;
                 float dy = ev.getY() - downY;
                 boolean allowParentTouchEvent;
-                if (dy > 0) {
-                    //位于顶部时下拉，让父View消费事件
-                    allowParentTouchEvent = isTop = firstVisibleItemPosition == 0 && getChildAt(0).getTop() >= 0;
+                if (Math.abs(dy) > Math.abs(dx)) {
+                    if (dy > 0) {
+                        //位于顶部时下拉，让父View消费事件
+                        allowParentTouchEvent = isTop = firstVisibleItemPosition == 0 && getChildAt(0).getTop() >= 0;
+                    } else {
+                        //位于底部时上拉，让父View消费事件
+                        int visibleItemCount = layoutManager.getChildCount();
+                        int totalItemCount = layoutManager.getItemCount();
+                        allowParentTouchEvent = isBottom = visibleItemCount > 0 && (lastVisibleItemPosition) >= totalItemCount - 1 && getChildAt(getChildCount() - 1).getBottom() <= getHeight();
+                    }
                 } else {
-                    //位于底部时上拉，让父View消费事件
-                    int visibleItemCount = layoutManager.getChildCount();
-                    int totalItemCount = layoutManager.getItemCount();
-                    allowParentTouchEvent = isBottom = visibleItemCount > 0 && (lastVisibleItemPosition) >= totalItemCount - 1 && getChildAt(getChildCount() - 1).getBottom() <= getHeight();
+                    //水平方向滑动
+                    allowParentTouchEvent = true;
                 }
                 getParent().requestDisallowInterceptTouchEvent(!allowParentTouchEvent);
         }

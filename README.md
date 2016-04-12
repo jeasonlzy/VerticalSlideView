@@ -9,7 +9,7 @@
 ## 1.用法
 该项目和我github上其他的view相关的项目已经一起打包上传到jCenter仓库中（源码地址 [https://github.com/jeasonlzy0216/ViewCore](https://github.com/jeasonlzy0216/ViewCore) ），使用的时候可以直接使用compile依赖，用法如下
 ```java
-	compile 'com.lzy.widget:view-core:0.1.5'
+	compile 'com.lzy.widget:view-core:0.1.9'
 ```
 或者使用
 ```java
@@ -17,7 +17,7 @@
 ```
 
 ## 2.实现原理
-把ListView，GridView，ScrollView，WebView，RecyclerView 的 dispatchTouchEvent 方法进行重写，当这几个View在对顶部并且向下拉 或者 在对底部向上拉时，自身不消费事件，让父容器拦截事件并处理。
+把ListView，GridView，ScrollView，WebView，RecyclerView 的 dispatchTouchEvent 方法进行重写，当这几个View在对顶部并且向下拉 或者 在对底部向上拉时，自身不消费事件，让父容器拦截事件并处理。并支持ViewPager。
 
 ## 3.代码参考
 ### 1.对于加载下一页的监听，只需要初始化控件并且设置监听即可

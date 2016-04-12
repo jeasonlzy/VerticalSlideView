@@ -5,6 +5,7 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
+import com.lzy.verticalslideview.fragment.Fragment_ViewPager;
 import com.lzy.widget.VerticalSlide;
 import com.lzy.verticalslideview.fragment.Fragment_GridView;
 import com.lzy.verticalslideview.fragment.Fragment_ListView;
@@ -40,6 +41,9 @@ public class DragActivity extends AppCompatActivity {
             case "RecyclerView":
                 transaction.replace(R.id.first, new Fragment_RecyclerView());
                 break;
+            case "ViewPager":
+                transaction.replace(R.id.first, new Fragment_ViewPager());
+                break;
         }
         switch (bottom) {
             case "ScrollView":
@@ -63,6 +67,9 @@ public class DragActivity extends AppCompatActivity {
                 break;
             case "RecyclerView":
                 transaction.replace(R.id.second, new Fragment_RecyclerView());
+                break;
+            case "ViewPager":
+                transaction.replace(R.id.second, new Fragment_ViewPager());
                 break;
         }
         transaction.commit();

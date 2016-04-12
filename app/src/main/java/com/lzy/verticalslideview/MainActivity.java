@@ -1,13 +1,12 @@
 package com.lzy.verticalslideview;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.BaseAdapter;
-import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -46,20 +45,36 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
                 intent.putExtra("bottom", "RecyclerView");
                 break;
             case 4:
-                intent.putExtra("top", "ListView");
-                intent.putExtra("bottom", "GridView");
+                intent.putExtra("top", "ScrollView");
+                intent.putExtra("bottom", "ViewPager");
                 break;
             case 5:
                 intent.putExtra("top", "ListView");
-                intent.putExtra("bottom", "WebView");
+                intent.putExtra("bottom", "GridView");
                 break;
             case 6:
-                intent.putExtra("top", "GridView");
+                intent.putExtra("top", "ListView");
                 intent.putExtra("bottom", "WebView");
                 break;
             case 7:
+                intent.putExtra("top", "ListView");
+                intent.putExtra("bottom", "ViewPager");
+                break;
+            case 8:
+                intent.putExtra("top", "GridView");
+                intent.putExtra("bottom", "WebView");
+                break;
+            case 9:
+                intent.putExtra("top", "GridView");
+                intent.putExtra("bottom", "ViewPager");
+                break;
+            case 10:
                 intent.putExtra("top", "RecyclerView");
                 intent.putExtra("bottom", "WebView");
+                break;
+            case 11:
+                intent.putExtra("top", "ViewPager");
+                intent.putExtra("bottom", "ScrollView");
                 break;
         }
         startActivity(intent);
@@ -75,10 +90,14 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
             strings.add("ScrollView与GridView");
             strings.add("ScrollView与WebView");
             strings.add("ScrollView与RecyclerView");
+            strings.add("ScrollView与ViewPager");
             strings.add("ListView与GridView");
             strings.add("ListView与WebView");
+            strings.add("ListView与ViewPager");
             strings.add("GridView与WebView");
+            strings.add("GridView与ViewPager");
             strings.add("RecyclerView与WebView");
+            strings.add("ViewPager与ScrollView");
         }
 
         @Override

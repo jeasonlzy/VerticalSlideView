@@ -20,11 +20,13 @@ public class Fragment_WebView extends Fragment {
         View rootView = inflater.inflate(R.layout.fragment_webview, container, false);
         webview = (WebView) rootView.findViewById(R.id.webView);
         progressBar = rootView.findViewById(R.id.progressbar);
+
+        initView();
         return rootView;
     }
 
     public void initView() {
-        if (null != webview && !hasInited) {
+        if (null != webview) {
             hasInited = true;
             progressBar.setVisibility(View.GONE);
             webview.loadUrl("https://github.com/jeasonlzy0216");

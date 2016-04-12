@@ -67,10 +67,21 @@ public class VerticalSlide extends ViewGroup {
     protected void onLayout(boolean changed, int l, int t, int r, int b) {
         if (view1 == null) view1 = getChildAt(0);
         if (view2 == null) view2 = getChildAt(1);
-        view1.layout(l, t, r, b);
-        view2.layout(l, t, r, b);
-        viewHeight = view1.getMeasuredHeight();
-        view2.offsetTopAndBottom(viewHeight);
+        //当滑倒第二页时，第二页的 top 为 0，第一页为 负数。
+        if (view1.getTop() == 0) {
+            view1.layout(l, t, r, b);
+            view2.layout(l, t, r, b);
+            viewHeight = view1.getMeasuredHeight();
+            view2.offsetTopAndBottom(viewHeight);
+        } else {
+            view1.layout(view1.getLeft(), view1.getTop(), view1.getRight(), view1.getBottom());
+            view2.layout(view2.getLeft(), view2.getTop(), view2.getRight(), view2.getBottom());
+        }
+    }
+
+    @Override
+    protected void onSizeChanged(int w, int h, int oldw, int oldh) {
+        super.onSizeChanged(w, h, oldw, oldh);
     }
 
     @Override
@@ -90,7 +101,8 @@ public class VerticalSlide extends ViewGroup {
         try {
             mDragHelper.processTouchEvent(event);
         } catch (Exception e) {
-            e.printStackTrace();
+            //这里会抛异常，不做处理
+//            e.printStackTrace();
         }
         return true;
     }
@@ -144,8 +156,13 @@ public class VerticalSlide extends ViewGroup {
 
         @Override
         public int clampViewPositionVertical(View child, int top, int dy) {
-            // 阻尼滑动，让滑动位移将为1/3
-            return child.getTop() + dy / 3;
+
+            //如果不想要滑动顶端还能拉出空白，打开下面两行注释即可
+//            if (child == view1 && top >= 0 && dy > 0) return 0;
+//            if (child == view2 && top <= 0 && dy < 0) return 0;
+
+            // 阻尼滑动，让滑动位移将为1/2
+            return child.getTop() + dy / 2;
         }
     }
 
