@@ -51,6 +51,7 @@ public class Fragment_ListView extends Fragment {
         return rootView;
     }
 
+    
     private class MyAdapter extends BaseAdapter {
 
         private List<String> strings;
