@@ -10,7 +10,7 @@
 
 
 ## 演示
- ![image](https://github.com/jeasonlzy0216/VerticalSlideView/blob/master/screenshots/demo0.png)![image](https://github.com/jeasonlzy0216/VerticalSlideView/blob/master/screenshots/demo2.gif)![image](https://github.com/jeasonlzy0216/VerticalSlideView/blob/master/screenshots/demo3.gif)![image](https://github.com/jeasonlzy0216/VerticalSlideView/blob/master/screenshots/demo4.gif)
+ ![image](http://7xss53.com2.z0.glb.clouddn.com/verticalslideview/demo0.png)![image](http://7xss53.com2.z0.glb.clouddn.com/verticalslideview/demo2.gif)![image](http://7xss53.com2.z0.glb.clouddn.com/verticalslideview/demo3.gif)![image](http://7xss53.com2.z0.glb.clouddn.com/verticalslideview/demo4.gif)
 
 ## 1.用法
 该项目和我github上其他的view相关的项目已经一起打包上传到jCenter仓库中（源码地址 [https://github.com/jeasonlzy0216/ViewCore](https://github.com/jeasonlzy0216/ViewCore) ），使用的时候可以直接使用compile依赖，用法如下

@@ -24,7 +24,6 @@ public class Fragment_ListView extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_listview, container, false);
         ListView listview = (ListView) rootView.findViewById(R.id.listView);
-        listview.setAdapter(new MyAdapter());
 
         TextView textView1 = new TextView(getActivity());
         textView1.setText("header1");
@@ -48,6 +47,7 @@ public class Fragment_ListView extends Fragment {
         listview.addHeaderView(textView2);
         listview.addFooterView(textView3);
 
+        listview.setAdapter(new MyAdapter());
         return rootView;
     }
 
