@@ -54,7 +54,7 @@ public class VerticalWebView extends WebView implements ObservableView {
                     }
                 } else {
                     //水平方向滑动
-                    allowParentTouchEvent = true;
+                    allowParentTouchEvent = isTop();
                 }
                 getParent().requestDisallowInterceptTouchEvent(!allowParentTouchEvent);
         }
