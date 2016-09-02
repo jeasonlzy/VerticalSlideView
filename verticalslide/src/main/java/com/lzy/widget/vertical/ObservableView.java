@@ -14,5 +14,5 @@ public interface ObservableView {
 
     boolean isBottom();
 
-//    void onScroll(int currentY, int maxY);
+    void goTop();
 }

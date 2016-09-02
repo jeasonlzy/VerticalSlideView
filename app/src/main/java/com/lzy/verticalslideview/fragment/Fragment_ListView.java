@@ -2,28 +2,29 @@ package com.lzy.verticalslideview.fragment;
 
 import android.graphics.Color;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AbsListView;
 import android.widget.BaseAdapter;
-import android.widget.ListView;
 import android.widget.TextView;
 
 import com.lzy.verticalslideview.ColorUtil;
 import com.lzy.verticalslideview.R;
+import com.lzy.widget.vertical.VerticalListView;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class Fragment_ListView extends Fragment {
+public class Fragment_ListView extends BaseFragment {
+
+    private VerticalListView listview;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_listview, container, false);
-        ListView listview = (ListView) rootView.findViewById(R.id.listView);
+        listview = (VerticalListView) rootView.findViewById(R.id.listView);
 
         TextView textView1 = new TextView(getActivity());
         textView1.setText("header1");
@@ -51,7 +52,11 @@ public class Fragment_ListView extends Fragment {
         return rootView;
     }
 
-    
+    @Override
+    public void goTop() {
+        listview.goTop();
+    }
+
     private class MyAdapter extends BaseAdapter {
 
         private List<String> strings;

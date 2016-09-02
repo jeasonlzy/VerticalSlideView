@@ -130,4 +130,9 @@ public class VerticalRecyclerView extends RecyclerView implements ObservableView
     public boolean isBottom() {
         return isBottom;
     }
+
+    @Override
+    public void goTop() {
+        scrollToPosition(0);
+    }
 }

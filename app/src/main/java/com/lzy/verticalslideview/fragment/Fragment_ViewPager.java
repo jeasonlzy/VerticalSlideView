@@ -1,6 +1,7 @@
 package com.lzy.verticalslideview.fragment;
 
 import android.os.Bundle;
+import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
@@ -10,12 +11,11 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.lzy.verticalslideview.R;
-import com.lzy.widget.tab.PagerSlidingTabStrip;
 
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 
-public class Fragment_ViewPager extends Fragment {
+public class Fragment_ViewPager extends BaseFragment {
 
     private LinkedHashMap<String, Fragment> fragments;
 
@@ -23,10 +23,14 @@ public class Fragment_ViewPager extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_viewpager, container, false);
         ViewPager viewPager = (ViewPager) rootView.findViewById(R.id.viewPager);
-        PagerSlidingTabStrip tab = (PagerSlidingTabStrip) rootView.findViewById(R.id.tab);
+        TabLayout tab = (TabLayout) rootView.findViewById(R.id.tab);
         viewPager.setAdapter(new MyPagerAdapter(getFragmentManager()));
-        tab.setViewPager(viewPager);
+        tab.setupWithViewPager(viewPager);
         return rootView;
+    }
+
+    @Override
+    public void goTop() {
     }
 
     private class MyPagerAdapter extends FragmentPagerAdapter {

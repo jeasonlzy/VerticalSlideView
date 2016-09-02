@@ -36,4 +36,8 @@ public class Fragment_View extends Fragment implements ObservableView {
     public boolean isBottom() {
         return true;
     }
+
+    @Override
+    public void goTop() {
+    }
 }

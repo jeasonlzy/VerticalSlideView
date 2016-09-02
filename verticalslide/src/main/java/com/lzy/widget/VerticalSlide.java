@@ -30,6 +30,8 @@ public class VerticalSlide extends ViewGroup {
     private View view1;
     private View view2;
     private int viewHeight;
+    private int currentPage;        //当前第几页
+    private boolean isGoTop = false;
 
     private OnShowNextPageListener nextPageListener; // 手指松开是否加载下一页的监听器
 
@@ -39,6 +41,12 @@ public class VerticalSlide extends ViewGroup {
 
     public interface OnShowNextPageListener {
         void onShowNextPage();
+    }
+
+    private OnGoTopListener goTopListener;          // 快速返回顶部的监听
+
+    public interface OnGoTopListener {
+        void goTop();
     }
 
     public VerticalSlide(Context context) {
@@ -55,6 +63,7 @@ public class VerticalSlide extends ViewGroup {
         mDragHelper = ViewDragHelper.create(this, 10f, new DragCallBack());
         mDragHelper.setEdgeTrackingEnabled(ViewDragHelper.EDGE_BOTTOM);
         mGestureDetector = new GestureDetectorCompat(getContext(), new YScrollDetector());
+        currentPage = 1;
     }
 
     @Override
@@ -65,12 +74,13 @@ public class VerticalSlide extends ViewGroup {
 
     @Override
     protected void onLayout(boolean changed, int l, int t, int r, int b) {
+        System.out.println("onLayout:" + l + " " + t + " " + r + " " + b);
         if (view1 == null) view1 = getChildAt(0);
         if (view2 == null) view2 = getChildAt(1);
         //当滑倒第二页时，第二页的 top 为 0，第一页为 负数。
         if (view1.getTop() == 0) {
-            view1.layout(l, t, r, b);
-            view2.layout(l, t, r, b);
+            view1.layout(0, 0, r, b);
+            view2.layout(0, 0, r, b);
             viewHeight = view1.getMeasuredHeight();
             view2.offsetTopAndBottom(viewHeight);
         } else {
@@ -151,6 +161,7 @@ public class VerticalSlide extends ViewGroup {
             //触发缓慢滚动
             if (mDragHelper.smoothSlideViewTo(releasedChild, 0, finalTop)) {
                 ViewCompat.postInvalidateOnAnimation(VerticalSlide.this);
+                isGoTop = false;
             }
         }
 
@@ -170,6 +181,24 @@ public class VerticalSlide extends ViewGroup {
     public void computeScroll() {
         if (mDragHelper.continueSettling(true)) {
             ViewCompat.postInvalidateOnAnimation(this);
+            if (view2.getTop() == 0) {
+                currentPage = 2;
+            } else if (view1.getTop() == 0) {
+                currentPage = 1;
+            }
+        }
+    }
+
+    /** 滚动到顶部 */
+    public void goTop(OnGoTopListener goTopListener) {
+        this.goTopListener = goTopListener;
+        if (goTopListener != null) goTopListener.goTop();
+        if (currentPage == 2) {
+            //触发缓慢滚动
+            if (mDragHelper.smoothSlideViewTo(view2, 0, viewHeight)) {
+                ViewCompat.postInvalidateOnAnimation(this);
+                isGoTop = true;
+            }
         }
     }
 

@@ -2,28 +2,34 @@ package com.lzy.verticalslideview.fragment;
 
 import android.graphics.Color;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.GridView;
 import android.widget.TextView;
 
 import com.lzy.verticalslideview.ColorUtil;
 import com.lzy.verticalslideview.R;
+import com.lzy.widget.vertical.VerticalGridView;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class Fragment_GridView extends Fragment {
+public class Fragment_GridView extends BaseFragment {
+
+    private VerticalGridView gridView;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_gridview, container, false);
-        GridView gridView = (GridView) rootView.findViewById(R.id.gridView);
+        gridView = (VerticalGridView) rootView.findViewById(R.id.gridView);
         gridView.setAdapter(new MyAdapter());
         return rootView;
+    }
+
+    @Override
+    public void goTop() {
+        gridView.goTop();
     }
 
     private class MyAdapter extends BaseAdapter {

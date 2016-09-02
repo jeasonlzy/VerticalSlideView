@@ -79,4 +79,9 @@ public class VerticalListView extends ListView implements ObservableView {
         final int lastBottom = getChildAt(childCount - 1).getBottom();
         return lastPosition >= itemsCount && lastBottom <= getHeight() - getListPaddingBottom();
     }
+
+    @Override
+    public void goTop() {
+        setSelection(0);
+    }
 }

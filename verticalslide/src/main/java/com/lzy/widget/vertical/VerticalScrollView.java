@@ -81,4 +81,9 @@ public class VerticalScrollView extends ScrollView implements ObservableView {
             return getScrollY() + getHeight() >= computeVerticalScrollRange();
         }
     }
+
+    @Override
+    public void goTop() {
+        scrollTo(0, 0);
+    }
 }

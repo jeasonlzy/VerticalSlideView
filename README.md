@@ -15,7 +15,7 @@
 ## 1.用法
 该项目和我github上其他的view相关的项目已经一起打包上传到jCenter仓库中（源码地址 [https://github.com/jeasonlzy0216/ViewCore](https://github.com/jeasonlzy0216/ViewCore) ），使用的时候可以直接使用compile依赖，用法如下
 ```java
-	compile 'com.lzy.widget:view-core:0.1.9'
+	compile 'com.lzy.widget:view-core:0.2.3'
 ```
 或者使用
 ```java
@@ -36,7 +36,28 @@
         }
     });
 ```
-### 2.使用`DragSlideLayout`控件，内部包含两个子View，分别表示第一页和第二页，可以先使用`FrameLayout`占位，代码中使用Fragment替换
+### 2.支持快速返回第一页
+```java
+    @Override
+    public void onClick(View v) {
+        /**
+         * 返回顶部分三步
+         * 1.第二页滚动到第二页的顶部
+         * 2.VerticalSlide从第二页返回第一页
+         * 3.第一页滚动到第一页的顶部
+         * OnGoTopListener 表示第一页滚动到顶部 的方法,这个由于采用什么布局,库内部并不知道,所以一般是自己实现
+         * 也可以不实现,直接传null
+         */
+        bottomFragment.goTop();
+        verticalSlide.goTop(new VerticalSlide.OnGoTopListener() {
+            @Override
+            public void goTop() {
+                topFragment.goTop();
+            }
+        });
+    }
+```
+### 3.使用`DragSlideLayout`控件，内部包含两个子View，分别表示第一页和第二页，可以先使用`FrameLayout`占位，代码中使用Fragment替换
 ```xml
 	<?xml version="1.0" encoding="utf-8"?>
 	<RelativeLayout
@@ -61,7 +82,7 @@
 	    </com.lzy.ui.DragSlideLayout>
 	</RelativeLayout>
 ```
-### 3.也可以直接使用`VerticalScrollView`,或者`VerticalListView`，等替换，上下两个布局可以任意调换
+### 4.也可以直接使用`VerticalScrollView`,或者`VerticalListView`，等替换，上下两个布局可以任意调换
 ```xml
 	<?xml version="1.0" encoding="utf-8"?>
 	<RelativeLayout

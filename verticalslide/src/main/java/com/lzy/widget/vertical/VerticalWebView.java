@@ -70,4 +70,9 @@ public class VerticalWebView extends WebView implements ObservableView {
     public boolean isBottom() {
         return getHeight() + getScrollY() >= getContentHeight() * getScale();
     }
+
+    @Override
+    public void goTop() {
+        scrollTo(0, 0);
+    }
 }

@@ -4,6 +4,7 @@ import android.content.Context;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.widget.GridView;
+import android.widget.Scroller;
 
 /**
  * ================================================
@@ -18,6 +19,7 @@ public class VerticalGridView extends GridView implements ObservableView {
 
     private float downX;
     private float downY;
+    private Scroller mScroller;
 
     public VerticalGridView(Context context) {
         this(context, null);
@@ -29,6 +31,7 @@ public class VerticalGridView extends GridView implements ObservableView {
 
     public VerticalGridView(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
+        mScroller = new Scroller(context);
     }
 
     @Override
@@ -77,5 +80,10 @@ public class VerticalGridView extends GridView implements ObservableView {
         final int lastPosition = firstPosition + childCount;
         final int lastBottom = getChildAt(childCount - 1).getBottom();
         return lastPosition >= itemsCount && lastBottom <= getHeight() - getListPaddingBottom();
+    }
+
+    @Override
+    public void goTop() {
+        setSelection(0);
     }
 }
